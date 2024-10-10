@@ -53,8 +53,10 @@ W = zeros(n,n);
 
 for i=1:N
   # Fill this in: You need pats.
-  W = ..............
+  W = W + pats(i,:)'*pats(i,:);
 end
+
+W = W/n;
 
 # Remove self-feedback
 
@@ -85,7 +87,7 @@ for i=1:num_iter
 	#	Fill this in: you need W, pick, and x.
 	#	Note: the new value should be either -1 or 1.
 	#--------------------
-   	x(pick) = ......................
+   	x(pick) = ((W(pick,:)*x)>=0.0)*2-1;
 
 	#--------------------
 	# 3.3 Plot results: you may need to tinker with this a bit.
