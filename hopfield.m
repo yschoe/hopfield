@@ -22,17 +22,17 @@
 #
 # 1. Noisy input
 #
-# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=g(5,:).*(rand(1,20*20)<0.6); figure(i+2); imagesc(reshape(inp,20,20)); inp=inp*2-1; g=g*2-1; [X,w] = hopfield(inp',g,100,5);
+# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=g(5,:).*(rand(1,20*20)<0.6); inp=inp*2-1; g=g*2-1; [X,w] = hopfield(inp',g,100,5); imagesc([reshape(g(5,:),20,20),ones(20,1)*2,reshape(inp,20,20),ones(20,1)*2,reshape(X,20,20)]);
 #
-# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=(g(5,:)*2-1).*((rand(1,20*20)<0.2)*2-1); figure(i+2); imagesc(reshape(inp,20,20)); g=-(g*2-1); [X,w] = hopfield(inp',g,100,5);
+# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=(g(5,:)*2-1).*((rand(1,20*20)<0.2)*2-1); g=-(g*2-1); [X,w] = hopfield(inp',g,100,5); imagesc([reshape(g(5,:),20,20),ones(20,1)*2,reshape(inp,20,20),ones(20,1)*2,reshape(X,20,20)]);
 #
 # 2. Partial input
 #
-# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=reshape(g(5,:),20,20); inp(1:10,:)=zeros(10,20); inp=vec(inp)'; figure(i+2); imagesc(reshape(inp,20,20)); inp=inp*2-1; g=g*2-1; [X,w] = hopfield(inp',g,100,5);
+# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=reshape(g(5,:),20,20); inp(1:10,:)=zeros(10,20); inp=vec(inp)'; inp=inp*2-1; g=g*2-1; [X,w] = hopfield(inp',g,100,5); imagesc([reshape(g(5,:),20,20),ones(20,1)*2,reshape(inp,20,20),ones(20,1)*2,reshape(X,20,20)]);
 #
 # Author: Yoonsuck Choe
 # http://faculty.cs.tamu.edu/choe
-# License: GNU Public License http://www.gnu.org
+# License: see github repo
 #
 #----------------------------------------------------------------------------
 function [x,W] = hopfield(inp,pats,num_iter,ref)
@@ -93,24 +93,26 @@ for i=1:num_iter
 	# 3.3 Plot results: you may need to tinker with this a bit.
 	# - this was supposed to show an animation. Will need a better method.
 	#--------------------
-        loc=find(x>=0); locx = floor(loc/m); locy = rem(loc,m);
-        loc0=find(x0>=0); locx0 = floor(loc0/m); locy0 = rem(loc0,m);
-        rloc=find(pats(ref,:)>=0); rlocx = floor(rloc/m); rlocy = rem(rloc,m);
     
-        if (i==1 && k==1) 
-            figure(1);
-	    #-- uncomment line below for octave
-            # gset("xrange [-1:41]"); gset("pointsize 2");
-            plot(locx0,m-locy0,'gx',rlocx+m+1,m-rlocy,'rx');
-        else 
-            figure(2);
-	    #-- uncomment line below for octave
-            # gset("xrange [-1:41]"); gset("pointsize 2");
-            plot(locx,m-locy,'bx');
-        end
-
    end
 
 end 
 
-   
+# legacy plotting code
+#
+#        loc=find(x>=0); locx = floor(loc/m); locy = rem(loc,m);
+#        loc0=find(x0>=0); locx0 = floor(loc0/m); locy0 = rem(loc0,m);
+#        rloc=find(pats(ref,:)>=0); rlocx = floor(rloc/m); rlocy = rem(rloc,m);
+#
+#        if (i==1 && k==1) 
+#            figure(1);
+#	    #-- uncomment line below for octave
+#            # gset("xrange [-1:41]"); gset("pointsize 2");
+#            plot(locx0,m-locy0,'gx',rlocx+m+1,m-rlocy,'rx');
+#        else 
+#            figure(2);
+#	    #-- uncomment line below for octave
+#            # gset("xrange [-1:41]"); gset("pointsize 2");
+#            plot(locx,m-locy,'bx');
+#        end
+
