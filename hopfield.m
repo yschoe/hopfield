@@ -89,30 +89,13 @@ for i=1:num_iter
 	#--------------------
    	x(pick) = ((W(pick,:)*x)>=0.0)*2-1;
 
-	#--------------------
-	# 3.3 Plot results: you may need to tinker with this a bit.
-	# - this was supposed to show an animation. Will need a better method.
-	#--------------------
-    
    end
 
+   #--------------------
+   # 3.3 Plot results: you may need to tinker with this a bit.
+   # - this was supposed to show an animation. Will need a better method.
+   #--------------------
+   imagesc([reshape(pats(ref,:),m,m),ones(m,1)*2,reshape(inp,m,m),ones(m,1)*2,reshape(x,m,m)]);  
+   
 end 
-
-# legacy plotting code
-#
-#        loc=find(x>=0); locx = floor(loc/m); locy = rem(loc,m);
-#        loc0=find(x0>=0); locx0 = floor(loc0/m); locy0 = rem(loc0,m);
-#        rloc=find(pats(ref,:)>=0); rlocx = floor(rloc/m); rlocy = rem(rloc,m);
-#
-#        if (i==1 && k==1) 
-#            figure(1);
-#	    #-- uncomment line below for octave
-#            # gset("xrange [-1:41]"); gset("pointsize 2");
-#            plot(locx0,m-locy0,'gx',rlocx+m+1,m-rlocy,'rx');
-#        else 
-#            figure(2);
-#	    #-- uncomment line below for octave
-#            # gset("xrange [-1:41]"); gset("pointsize 2");
-#            plot(locx,m-locy,'bx');
-#        end
 
