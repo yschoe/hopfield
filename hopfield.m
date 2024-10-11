@@ -22,13 +22,13 @@
 #
 # 1. Noisy input
 #
-# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=g(5,:).*(rand(1,20*20)<0.6); inp=inp*2-1; g=g*2-1; [X,w] = hopfield(inp',g,100,5); imagesc([reshape(g(5,:),20,20),ones(20,1)*2,reshape(inp,20,20),ones(20,1)*2,reshape(X,20,20)]);
+# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=g(5,:).*(rand(1,20*20)<0.6); inp=inp*2-1; g=g*2-1; [X,w] = hopfield(inp',g,100,5); 
 #
-# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=(g(5,:)*2-1).*((rand(1,20*20)<0.2)*2-1); g=-(g*2-1); [X,w] = hopfield(inp',g,100,5); imagesc([reshape(g(5,:),20,20),ones(20,1)*2,reshape(inp,20,20),ones(20,1)*2,reshape(X,20,20)]);
+# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=(g(5,:)*2-1).*((rand(1,20*20)<0.2)*2-1); g=-(g*2-1); [X,w] = hopfield(inp',g,100,5); 
 #
 # 2. Partial input
 #
-# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=reshape(g(5,:),20,20); inp(1:10,:)=zeros(10,20); inp=vec(inp)'; inp=inp*2-1; g=g*2-1; [X,w] = hopfield(inp',g,100,5); imagesc([reshape(g(5,:),20,20),ones(20,1)*2,reshape(inp,20,20),ones(20,1)*2,reshape(X,20,20)]);
+# g = []; for i=1:10; g =[g; vec(dogfilter(rand(20,20),17))'>0]; end; inp=reshape(g(5,:),20,20); inp(1:10,:)=zeros(10,20); inp=vec(inp)'; inp=inp*2-1; g=g*2-1; [X,w] = hopfield(inp',g,100,5); 
 #
 # Author: Yoonsuck Choe
 # http://faculty.cs.tamu.edu/choe
