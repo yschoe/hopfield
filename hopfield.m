@@ -73,6 +73,7 @@ x = inp;
 x0 = inp;
 
 # Main loop
+figure;
 for i=1:num_iter
 
    for k=1:n
@@ -96,6 +97,8 @@ for i=1:num_iter
    # - this was supposed to show an animation. Will need a better method.
    #--------------------
    imagesc([reshape(pats(ref,:),m,m),ones(m,1)*2,reshape(inp,m,m),ones(m,1)*2,reshape(x,m,m)]);  
+   axis image off;
+   colormap gray;
    
 end 
 
