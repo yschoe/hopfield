@@ -56,7 +56,7 @@ for i=1:N
   W = W + pats(i,:)'*pats(i,:);
 end
 
-W = W/n;
+W = W/N;
 
 # Remove self-feedback
 
