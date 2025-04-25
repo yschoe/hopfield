@@ -76,12 +76,15 @@ x0 = inp;
 figure;
 for i=1:num_iter
 
+
+   visit_order = randperm(n);
+
    for k=1:n
 	
 	#--------------------
 	# 3.1 pick a unit at random, for updating
 	#--------------------
-   	pick = ceil(rand*n);
+   	pick = visit_order(k);
 
 	#--------------------
 	# 3.2 determine the new state of the neuron just picked
