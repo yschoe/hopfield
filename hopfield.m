@@ -56,7 +56,7 @@ for i=1:N
   W = W + pats(i,:)'*pats(i,:);
 end
 
-W = W/N;
+W = W/(N*1.0);
 
 # Remove self-feedback
 
@@ -76,7 +76,6 @@ x0 = inp;
 figure;
 for i=1:num_iter
 
-
    visit_order = randperm(n);
 
    for k=1:n
@@ -91,7 +90,12 @@ for i=1:num_iter
 	#	Fill this in: you need W, pick, and x.
 	#	Note: the new value should be either -1 or 1.
 	#--------------------
-   	x(pick) = ((W(pick,:)*x)>=0.0)*2-1;
+        net_inp = W(pick,:)*x;
+   	if net_inp > 0
+	   x(pick) = 1;
+	elseif net_inp < 0
+	   x(pick) = -1;
+	end
 
    end
 
